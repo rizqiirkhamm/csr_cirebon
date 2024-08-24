@@ -1,11 +1,11 @@
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+        {{ __('Terimakasih telah meregistrasikan akun sebagai Mitra! Untuk alasan keamanan, Terdapat Verifikasi Email yang dikirim melalui inbox GMAIL anda. Jika email tidak terkirim, Klik tombol Resend Email Verifikasi dibawah.') }}
     </div>
 
     @if (session('status') == 'verification-link-sent')
         <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+            {{ __('Email Verifikasi Baru telah dikirim.') }}
         </div>
     @endif
 
@@ -15,7 +15,7 @@
 
             <div>
                 <x-primary-button>
-                    {{ __('Resend Verification Email') }}
+                    {{ __('Resend Email Verifikasi') }}
                 </x-primary-button>
             </div>
         </form>
