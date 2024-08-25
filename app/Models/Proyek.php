@@ -20,4 +20,9 @@ class Proyek extends Model
     {
         return $this->belongsTo(Program::class, 'id_program');
     }
+
+    public function laporan()
+    {
+        return $this->hasMany(Laporan::class, 'id_proyek');
+    }
 }

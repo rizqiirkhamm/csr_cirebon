@@ -6,19 +6,19 @@
     </div>
     <div class='w-full h-auto grid grid-cols-4 max-md:grid-cols-2 max-md:gap-y-4'>
         <div class='w-full h-full border-l-2 border-orange-500 p-5 flex justify-center items-start flex-col'>
-            <h1 class='font-black text-5xl max-md:text-4xl'>124</h1>
+            <h1 class='font-black text-5xl max-md:text-4xl'>{{ $jumlahProyek }}</h1>
             <h1>Total Proyek CSR</h1>
         </div>
         <div class='w-full h-full border-l-2 border-orange-500 p-5 flex justify-center items-start flex-col'>
-            <h1 class='font-black text-5xl max-md:text-4xl'>119</h1>
+            <h1 class='font-black text-5xl max-md:text-4xl'>{{ $jumlahProyekTerealisasi }}</h1>
             <h1>Proyek Terealisasi</h1>
         </div>
         <div class='w-full h-full border-l-2 border-orange-500 p-5 flex justify-center items-start flex-col'>
-            <h1 class='font-black text-5xl max-md:text-4xl'>89</h1>
+            <h1 class='font-black text-5xl max-md:text-4xl'>{{ $jumlahMitra }}</h1>
             <h1>Mitra Bergabung</h1>
         </div>
         <div class='w-full h-full border-l-2 border-orange-500 p-5 flex justify-center items-start flex-col'>
-            <h1 class='font-black text-5xl max-md:text-4xl'>Rp 200T +</h1>
+            <h1 class='font-black text-4xl max-md:text-3xl'>{{ $formattedDanaRealisasi }}</h1>
             <h1>Dana Realisasi CSR</h1>
         </div>
     </div>

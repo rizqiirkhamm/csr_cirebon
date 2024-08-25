@@ -7,20 +7,18 @@
             responsibility terhadap Kabupaten Cirebon dari para Mitra.</h1>
     </div>
     <div class="w-1/2 max-md:w-full max-md:h-1/2 h-full flex flex-col justify-end items-center space-y-4">
-        <div class="slider-container w-full max-w-lg mx-auto p-5 bg-gray-800 text-white relative overflow-hidden">
+        <div class="slider-container w-full max-w-lg mx-auto p-5 bg-gray-800 text-white relative overflow-hidden h-[230px]">
             <!-- Slider Wrapper -->
-            <div id="laporan-slider" class="slider-wrapper relative w-full h-64">
+            <div id="laporan-slider" class="slider-wrapper relative w-full h-full">
         
                 <!-- Data Laporan -->
                 @foreach ($laporanTerbaru as $index => $item)
-                    <div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out {{ $loop->first ? 'active' : 'hidden' }}">
-                        <div class="slide-content p-5">
-                            <div class="date bg-red-600 inline-block px-3 py-1 text-xs font-bold uppercase">
-                                {{ \Carbon\Carbon::parse($item->created_at)->format('D, d M Y') }}
-                            </div>
-                            <h2 class="mt-4 text-2xl font-bold">{{ $item->judul_laporan }}</h2>
-                            <p class="mt-2 text-sm text-ellipsis overflow-hidden">{{ \Illuminate\Support\Str::limit($item->deskripsi, 150) }}</p>
+                    <div class="slide {{ $loop->first ? 'active' : '' }} p-5">
+                        <div class="date bg-red-600 inline-block px-3 py-1 text-xs font-bold uppercase">
+                            {{ \Carbon\Carbon::parse($item->created_at)->format('D, d M Y') }}
                         </div>
+                        <h2 class="mt-4 text-2xl font-bold">{{ $item->judul_laporan }}</h2>
+                        <p class="mt-2 text-sm text-ellipsis overflow-hidden">{{ \Illuminate\Support\Str::limit($item->deskripsi, 150) }}</p>
                     </div>
                 @endforeach
         
@@ -44,18 +42,19 @@
     }
 
     @media (max-width: 768px) {
-        /* For screens smaller than the md breakpoint */
         .bg-responsive {
             background-image: url('/images/bg-phone.png');
         }
     }
 
     .slide {
+        display: none; /* Sembunyikan semua slide secara default */
         opacity: 0;
         transition: opacity 1s ease-in-out;
     }
 
     .slide.active {
+        display: block; /* Tampilkan slide yang aktif */
         opacity: 1;
     }
 
@@ -65,6 +64,15 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .slider-wrapper {
+        height: 100%; /* Memastikan tinggi kontainer sesuai */
+        position: relative;
+    }
+
+    .slider-container {
+        max-height: 100%; /* Pastikan kontainer tidak membatasi ukuran slide */
     }
 </style>
 
@@ -76,10 +84,11 @@
 
     function showSlide(index) {
         slides.forEach((slide, i) => {
-            slide.classList.remove('active');
+            slide.style.display = 'none'; // Sembunyikan slide yang tidak aktif
             indicators[i].classList.remove('bg-red-600');
             indicators[i].classList.add('bg-gray-500');
         });
+        slides[index].style.display = 'block'; // Tampilkan slide yang aktif
         slides[index].classList.add('active');
         indicators[index].classList.add('bg-red-600');
     }
@@ -90,27 +99,4 @@
     }
 
     setInterval(nextSlide, 3000); // Change slide every 3 seconds
-
-    // Jika Anda ingin mengganti data secara otomatis menggunakan AJAX
-    setInterval(function() {
-        fetch('/path-to-fetch-new-reports')
-            .then(response => response.json())
-            .then(data => {
-                updateSliderContent(data);
-            });
-    }, 3000);
-
-    function updateSliderContent(data) {
-        slides.forEach((slide, i) => {
-            slide.querySelector('.date').innerText = formatDate(data[i].created_at);
-            slide.querySelector('h2').innerText = data[i].judul_laporan;
-            slide.querySelector('p').innerText = data[i].deskripsi;
-        });
-    }
-
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('id-ID', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' });
-    }
-
 </script>

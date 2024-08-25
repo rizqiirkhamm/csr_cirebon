@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Proyek;
 use App\Models\Mitra;
+use App\Models\Sektor;
+use App\Models\Laporan;
+use App\Helpers\FormatHelper;
 
 class StatsController extends Controller
 {
@@ -13,9 +16,20 @@ class StatsController extends Controller
      */
     public function index()
     {
-        $totalProyekCsr = Proyek::count();
-        $totalMitraCsr = Mitra::count();
-        return view('stats', compact('totalProyekCsr', 'totalMitraCsr'));
+        $jumlahProyek = Proyek::count();
+
+        $jumlahMitra = Mitra::count();
+
+        // Menghitung total dana realisasi
+        $totalDanaRealisasi = Laporan::sum('realisasi');
+
+        // Memformat total dana realisasi
+        $formattedDanaRealisasi = FormatHelper::formatRupiah($totalDanaRealisasi);
+
+        // Menghitung jumlah proyek yang terealisasi
+        $jumlahProyekTerealisasi = Proyek::whereHas('laporan')->count();
+
+        return view('stats', compact('jumlahProyek', 'jumlahMitra', 'formattedDanaRealisasi', 'jumlahProyekTerealisasi'));
     }
 
     /**

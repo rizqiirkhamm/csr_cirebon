@@ -13,7 +13,7 @@
             @endforeach
         </div>
     </div>
-    <div id="sektor-detail" class="w-1/2 max-md:w-full h-full flex flex-col bg-gray-800 p-5 rounded-md text-white">
+    <div id="sektor-detail" class="w-1/2 max-md:w-full h-[500px] flex flex-col justify-start items-start bg-gray-800 p-5 rounded-md text-white">
         <!-- Detail sektor akan muncul di sini -->
         <p>Pilih salah satu sektor untuk melihat detailnya.</p>
     </div>
@@ -51,8 +51,8 @@
         if (selectedSektor) {
             // Update konten detail sektor
             detailContainer.innerHTML = `
-                <div class="space-y-3 w-full">
-                    <img class="h-80 rounded-lg" src="${selectedSektor.foto_thumbnail}" alt="">
+                <div class="space-y-3 w-full h-full flex flex-col justify-start items-start">
+                    <img class="h-80 rounded-lg" src="images/${selectedSektor.thumbnail}" alt="">
                     <p>${selectedSektor.deskripsi}</p>
                 </div>
             `;

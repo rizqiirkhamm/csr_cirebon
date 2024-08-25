@@ -5,27 +5,17 @@
         <div class="w-20 h-1 bg-orange-500 my-3"></div>
         <h1 class="font-extrabold text-5xl max-md:mb-5 max-md:text-4xl">Gallery</h1>
     </div>
-    <div class="grid grid-cols-5 gap-4 pb-5 max-md:grid-cols-2">
+    <div class="grid grid-cols-4 gap-4 pb-5 max-md:grid-cols-1">
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg" alt="">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt="">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
+            <img class="max-w-full rounded-lg" src="{{ asset('images/' . $laporan->foto_laporan) }}" alt="">
         </div>
     </div>
     <div class="w-full h-auto py-10 grid grid-cols-3 gap-3 max-md:grid-cols-1">
         <div class="w-full h-28 bg-gray-100 rounded-lg p-6">
             <h1 class="text-xl font-thin text-gray-600">Realisasi</h1>
-            <h1 class="text-2xl font-bold text-gray-800">Rp.10,000,000</h1>
+            <h1 class="text-2xl font-bold text-gray-800">
+                {{ \App\Helpers\FormatHelper::formatRupiah($laporan->realisasi) }}
+            </h1>
         </div>
         <div class="w-full h-28 bg-gray-100 rounded-lg p-6">
             <h1 class="text-xl font-thin text-gray-600">Nama Proyek</h1>

@@ -8,7 +8,7 @@
             <p class="text-gray-400 text-xs mt-1">Pemkab Kabupaten Cirebon, Badan Pendapatan Daerah (Bapenda) Kabupaten Cirebon.</p>
         </div>
         <!-- Back to main page button with hover effect -->
-        <a href="{{ route('dashboard') }}" class="px-4 py-2 rounded-md text-white flex items-center border border-white hover:bg-[#2D3748] hover:text-gray-200 transition duration-300 ease-in-out">
+        <a href="{{ url('/') }}" class="px-4 py-2 rounded-md text-white flex items-center border border-white hover:bg-[#2D3748] hover:text-gray-200 transition duration-300 ease-in-out">
             <!-- Back arrow icon -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />

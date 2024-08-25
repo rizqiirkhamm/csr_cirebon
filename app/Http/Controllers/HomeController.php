@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Sektor;
 use App\Models\Laporan;
 use App\Models\Kegiatan;
+use App\Models\Proyek;
 use App\Models\Mitra;
 use App\Models\Faq;
+use App\Helpers\FormatHelper;
 
 class HomeController extends Controller
 {
@@ -15,15 +17,28 @@ class HomeController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $laporanTerbaru = Laporan::orderBy('created_at', 'desc')->take(4)->get();
-        $kegiatan = Kegiatan::latest()->take(4)->get();
-        $sektor = Sektor::all();
-        $mitra = Mitra::all();
-        $laporan = Laporan::all();
-        $faq = Faq::all();
-        return view('home', compact('sektor','faq','kegiatan', 'laporan', 'laporanTerbaru', 'mitra'));
-    }
+{
+    $laporanTerbaru = Laporan::orderBy('created_at', 'desc')->take(4)->get();
+    $kegiatan = Kegiatan::latest()->take(4)->get();
+    $sektor = Sektor::all();
+    $jumlahProyek = Proyek::count();
+    $jumlahMitra = Mitra::count();
+    $mitra = Mitra::all();
+    $laporan = Laporan::all();
+    $faq = Faq::all();
+
+    // Menghitung total dana realisasi
+    $totalDanaRealisasi = Laporan::sum('realisasi');
+
+    // Memformat total dana realisasi
+    $formattedDanaRealisasi = FormatHelper::formatRupiah($totalDanaRealisasi);
+
+    // Menghitung jumlah proyek yang terealisasi
+    $jumlahProyekTerealisasi = Proyek::whereHas('laporan')->count();
+
+    return view('home', compact('sektor', 'faq', 'kegiatan', 'laporan', 'laporanTerbaru', 'mitra', 'jumlahProyek', 'jumlahMitra', 'formattedDanaRealisasi', 'jumlahProyekTerealisasi'));
+}
+
 
     /**
      * Show the form for creating a new resource.
