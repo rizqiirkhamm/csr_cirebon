@@ -111,31 +111,31 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
-    var categories = @json($categories);
-    var data = @json($data);
-
-    var barOptions1 = {
-        series: [{
-            data: data
-        }],
-        chart: {
-            type: 'bar',
-            height: 350
-        },
-        plotOptions: {
-            bar: {
-                borderRadius: 4,
-                borderRadiusApplication: 'end',
-                horizontal: true,
+        var barOptions1 = {
+            series: [{
+                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+            }],
+            chart: {
+                type: 'bar',
+                height: 350
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    borderRadiusApplication: 'end',
+                    horizontal: true,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France',
+                    'Japan',
+                    'United States', 'China', 'Germany'
+                ],
             }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        xaxis: {
-            categories: categories,
         }
-    }
 
         var barChart1 = new ApexCharts(document.querySelector("#bar-chart-1"),
             barOptions1);
