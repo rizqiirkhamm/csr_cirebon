@@ -139,6 +139,8 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+             
+
                 @auth    
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -192,6 +194,10 @@
                 @else
                     <a href="/register" class="px-4 py-2 bg-red-800 text-white rounded-md">Pengajuan</a>
                 @endauth
+                   <!-- Notifikasi -->
+                   <div class="mr-3">
+                    <x-notification />
+                </div>
             </div>
 
             <!-- Hamburger -->
