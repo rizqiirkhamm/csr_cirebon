@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('tahun');
             $table->integer('realisasi');
             $table->text('deskripsi')->nullable();
-            $table->string('foto_laporan')->default('thumbnail.png');
+            $table->string('thumbnail')->default('thumbnail.png');
             $table->enum('status', ['tolak', 'revisi', 'pending', 'terbit'])->default('pending');
             $table->foreign('id_sektor')->references('id')->on('sektors')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_program')->references('id')->on('programs')->onDelete('cascade')->onUpdate('cascade');
