@@ -27,7 +27,7 @@
         {{-- Card Proyek --}}
         @foreach ($proyek as $item)
         <div class="w-full border-2 rounded-md flex justify-start items-center flex-col">
-            <img class="w-full h-1/2 rounded-t-md" src="{{$item->thumbnail}}" alt="">
+            <img class="w-full h-1/2 rounded-t-md" src="{{ asset('storage/images/' . $item->thumbnail) }}" alt="">
             <div class="w-full h1/2 flex justify-start items-start flex-col p-5 space-y-3">
                 <h1 class="font-bold text-2xl">{{$item->nama_proyek}}</h1>
                 <h1 class="w-full font-regular text-slate-700 text-lg max-md:text-base p-2 bg-slate-300 flex rounded-md">

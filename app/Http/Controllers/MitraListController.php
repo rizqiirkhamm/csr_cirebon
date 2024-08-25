@@ -37,7 +37,7 @@ class MitraListController extends Controller
      */
     public function show(string $id)
     {
-        $mitra = Mitra::findOrFail($id);
+        $mitra = Summary::findOrFail($id);
         return view('mitra-list.detail', compact('mitra'));
     }
 
