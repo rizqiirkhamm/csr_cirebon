@@ -33,26 +33,26 @@
                 </div>
 
                 <!-- Nama -->
-                <div>
-                    <label for="nama" class="block text-sm font-medium text-gray-700">
-                        Nama
-                    </label>
-                    <div class="mt-1">
-                        <input type="text" name="nama" id="nama" value="{{ old('nama', $summary->nama ?? $user->name) }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
-                    </div>
-                </div>
-
                 @if(Auth::user()->level !== 'admin')
-                    <!-- Nama PT (hanya untuk mitra) -->
                     <div>
-                        <label for="nama_mitra" class="block text-sm font-medium text-gray-700">
-                            Nama PT
+                        <label for="nama" class="block text-sm font-medium text-gray-700">
+                            Nama Mitra
                         </label>
                         <div class="mt-1">
                             <input type="text" name="nama_mitra" id="nama_mitra" value="{{ old('nama_mitra', $summary->nama_mitra ?? '') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
                         </div>
                     </div>
                 @endif
+
+                <!-- Nama PT (hanya untuk mitra) -->
+                <div>
+                    <label for="nama_mitra" class="block text-sm font-medium text-gray-700">
+                        Nama PT
+                    </label>
+                    <div class="mt-1">
+                        <input type="text" name="nama" id="nama" value="{{ old('nama', $summary->nama ?? $user->name) }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
+                    </div>
+                </div>
 
                 <!-- Email -->
                 <div>
