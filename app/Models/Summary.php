@@ -9,7 +9,20 @@ class Summary extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $table = 'summary';
+
+    protected $fillable = [
+        'id_user',
+        'foto_pp',
+        'nama_mitra',
+        'nama',
+        'no_telp',
+        'email',
+        'alamat',
+        'deskripsi',
+    ];
+
+    protected $table = 'summary';
 
     public function user()
     {

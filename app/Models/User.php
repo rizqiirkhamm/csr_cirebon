@@ -44,4 +44,23 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+    public function summary()
+    {
+        return $this->hasOne(Summary::class, 'id_user');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            $user->summary()->create([
+                'nama' => $user->name,
+                'email' => $user->email,
+            ]);
+            $user->is_summary = true;
+            $user->save();
+        });
+    }
 }

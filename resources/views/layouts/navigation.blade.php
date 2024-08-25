@@ -1,42 +1,97 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 fixed w-full z-50">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+            <!-- Logo -->
+            <div class="shrink-0 flex items-center">
+                <a href="{{ url('/') }}">
+                    <x-application-logo class="block h-3 w-auto fill-current text-gray-800" />
+                </a>
             </div>
 
+            <!-- Navigation Links -->
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                @if(Auth::user() && Auth::user()->level === 'admin')
+                    <x-nav-link :href="'#'" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="'#'" :active="request()->routeIs('users.index')">
+                        {{ __('Manajemen Pengguna') }}
+                    </x-nav-link>
+                    <x-nav-link :href="'#'" :active="request()->routeIs('reports.index')">
+                        {{ __('Laporan Sistem') }}
+                    </x-nav-link>
+                    <x-nav-link :href="'#'" :active="request()->routeIs('products.index')">
+                        {{ __('Manajemen Produk') }}
+                    </x-nav-link>
+                    <x-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
+                        {{ __('Laporan Penjualan') }}
+                    </x-nav-link>
+                @elseif(Auth::user() && Auth::user()->level === 'mitra')
+                    <!-- Mitra tidak memiliki menu khusus -->
+                @else
+                    <x-nav-link :href="url('/')" :active="request()->routeIs('home')">
+                        {{ __('Beranda') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/tentang')" :active="request()->routeIs('tentang')">
+                        {{ __('Tentang') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/kegiatan')" :active="request()->routeIs('kegiatan')">
+                        {{ __('Kegiatan') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/statistik')" :active="request()->routeIs('statistik')">
+                        {{ __('Statistik') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/sektor')" :active="request()->routeIs('sektor')">
+                        {{ __('Sektor') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/laporan')" :active="request()->routeIs('laporan')">
+                        {{ __('Laporan') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/mitra-list')" :active="request()->routeIs('mitra')">
+                        {{ __('Mitra') }}
+                    </x-nav-link>
+                @endif
+
+            </div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                @auth    
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
-
-                            <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
+                            @php
+                                $summary = Auth::user()->summary;
+                                $isProfileComplete = $summary && $summary->nama && $summary->nama_mitra && $summary->email && $summary->no_telp && $summary->alamat && $summary->deskripsi;
+                            @endphp
+                            
+                            @if(Auth::user()->level === 'admin' || $isProfileComplete)
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex flex-col items-start">
+                                        <span class="font-semibold" style="font-family: Inter; font-size: 16px; font-weight: 500; line-height: 24px; color: #101828;">{{ Auth::user()->name }}</span>
+                                        <span class="text-sm ml-auto" style="font-family: Inter; font-size: 16px; font-weight: 400; line-height: 20px; color: #667085;">{{ ucfirst(Auth::user()->level) }}</span>
+                                    </div>
+                                    <div class="flex-shrink-0">
+                                        @if(Auth::user()->summary && Auth::user()->summary->foto_pp)
+                                            <img class="h-10 w-10 rounded-full object-cover" src="{{ Storage::url('images/profile/' . Auth::user()->summary->foto_pp) }}" alt="{{ Auth::user()->name }}">
+                                        @else
+                                            <img class="h-10 w-10 rounded-full" src="{{ Storage::url('images/profile/profile.png') }}" alt="{{ Auth::user()->name }}">
+                                        @endif
+                                    </div>
+                                </div>
+                            @else
+                                <span>{{ __('Menu') }}</span>
+                            @endif
                         </button>
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
+
+                        @if(Auth::user()->level === 'admin' || $isProfileComplete)
+                            <x-dropdown-link :href="route('summary.show')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                        @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -50,6 +105,10 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+
+                @else
+                    <a href="/register" class="px-4 py-2 bg-red-800 text-white rounded-md">Pengajuan</a>
+                @endauth
             </div>
 
             <!-- Hamburger -->
@@ -67,23 +126,64 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @if(Auth::user() && Auth::user()->level === 'admin')
+                <x-responsive-nav-link :href="'#'" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="'#'" :active="request()->routeIs('users.index')">
+                    {{ __('Manajemen Pengguna') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="'#'" :active="request()->routeIs('reports.index')">
+                    {{ __('Laporan Sistem') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="'#'" :active="request()->routeIs('products.index')">
+                    {{ __('Manajemen Produk') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
+                    {{ __('Laporan Penjualan') }}
+                </x-responsive-nav-link>
+            @elseif(Auth::user() && Auth::user()->level === 'mitra')
+                <!-- Mitra tidak memiliki menu khusus -->
+            @else
+                <x-responsive-nav-link :href="url('/')" :active="request()->routeIs('home')">
+                    {{ __('Beranda') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="url('/tentang')" :active="request()->routeIs('tentang')">
+                    {{ __('Tentang') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="url('/kegiatan')" :active="request()->routeIs('kegiatan')">
+                    {{ __('Kegiatan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="url('/statistik')" :active="request()->routeIs('statistik')">
+                    {{ __('Statistik') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="url('/sektor')" :active="request()->routeIs('sektor')">
+                    {{ __('Sektor') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="url('/laporan')" :active="request()->routeIs('laporan')">
+                    {{ __('Laporan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="url('/mitra-list')" :active="request()->routeIs('mitra')">
+                    {{ __('Mitra') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
+                @auth
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                @endauth
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
+                @if(Auth::user() && (Auth::user()->level === 'admin' || $isProfileComplete))
+                    <x-responsive-nav-link :href="route('summary.show')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                @endif
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
