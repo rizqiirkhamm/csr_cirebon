@@ -105,7 +105,7 @@
                             </div>
 
                             <div>
-                                <label for="nama_mitra" class="block text-sm font-medium text-gray-700">{{ __('Nama PT') }} <span class="text-red-600">*</span></label>
+                                <label for="nama_mitra" class="block text-sm font-medium text-gray-700">{{ __('Nama Mitra') }} <span class="text-red-600">*</span></label>
                                 <input type="text" name="nama_mitra" id="nama_mitra" value="{{ old('nama_mitra', $summary->nama_mitra ?? '') }}" required class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 @error('nama_mitra')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

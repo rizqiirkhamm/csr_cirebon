@@ -119,7 +119,7 @@ class SummaryController extends Controller
         $summary->save();
 
         // Update user name and email
-        $user->name = $validatedData['nama'];
+        $user->name = $validatedData['nama_pt'];
         $user->email = $validatedData['email'];
         $user->save();
 

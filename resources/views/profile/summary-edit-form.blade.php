@@ -32,21 +32,12 @@
                     </div>
                 </div>
 
-                <!-- Nama -->
-                <div>
-                    <label for="nama" class="block text-sm font-medium text-gray-700">
-                        Nama
-                    </label>
-                    <div class="mt-1">
-                        <input type="text" name="nama" id="nama" value="{{ old('nama', $summary->nama ?? $user->name) }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
-                    </div>
-                </div>
 
                 @if(Auth::user()->level !== 'admin')
                     <!-- Nama PT (hanya untuk mitra) -->
                     <div>
-                        <label for="nama_mitra" class="block text-sm font-medium text-gray-700">
-                            Nama PT
+                        <label for="nama" class="block text-sm font-medium text-gray-700">
+                            Nama <span class="text-red-600">*</span>
                         </label>
                         <div class="mt-1">
                             <input type="text" name="nama_mitra" id="nama_mitra" value="{{ old('nama_mitra', $summary->nama_mitra ?? '') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
@@ -54,10 +45,20 @@
                     </div>
                 @endif
 
+                  <!-- Nama PT (hanya untuk mitra) -->
+                  <div>
+                    <label for="nama_mitra" class="block text-sm font-medium text-gray-700">
+                        Nama PT <span class="text-red-600">*</span>
+                    </label>
+                    <div class="mt-1">
+                        <input type="text" name="nama" id="nama" value="{{ old('nama', $summary->nama ?? $user->name) }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
+                    </div>
+                </div>
+
                 <!-- Email -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">
-                        Email
+                        Email <span class="text-red-600">*</span>
                     </label>
                     <div class="mt-1">
                         <input type="email" name="email" id="email" value="{{ old('email', $summary->email ?? $user->email) }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
@@ -68,7 +69,7 @@
                     <!-- Nomor Telepon (hanya untuk mitra) -->
                     <div>
                         <label for="no_telp" class="block text-sm font-medium text-gray-700">
-                            Nomor Telepon
+                            Nomor Telepon <span class="text-red-600">*</span>
                         </label>
                         <div class="mt-1">
                             <input type="text" name="no_telp" id="no_telp" value="{{ old('no_telp', $summary->no_telp ?? '') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
@@ -78,10 +79,10 @@
                     <!-- Alamat (hanya untuk mitra) -->
                     <div>
                         <label for="alamat" class="block text-sm font-medium text-gray-700">
-                            Alamat
+                            Alamat <span class="text-red-600">*</span>
                         </label>
                         <div class="mt-1">
-                            <textarea name="alamat" id="alamat" rows="3" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">{{ old('alamat', $summary->alamat ?? '') }}</textarea>
+                            <textarea name="alamat" id="alamat" rows="3" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">{{ old('alamat', $summary->alamat ?? '') }}</textarea>
                         </div>
                     </div>
                 @endif
@@ -89,10 +90,10 @@
                 <!-- Deskripsi -->
                 <div>
                     <label for="deskripsi" class="block text-sm font-medium text-gray-700">
-                        Deskripsi
+                        Deskripsi <span class="text-red-600">*</span>
                     </label>
                     <div class="mt-1">
-                        <textarea name="deskripsi" id="deskripsi" rows="4" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">{{ old('deskripsi', $summary->deskripsi ?? '') }}</textarea>
+                        <textarea name="deskripsi" id="deskripsi" rows="4" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">{{ old('deskripsi', $summary->deskripsi ?? '') }}</textarea>
                     </div>
                 </div>
 

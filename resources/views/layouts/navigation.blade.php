@@ -12,54 +12,107 @@
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 @if(auth()->check())
-                    @if(auth()->user()->level === 'admin' && request()->routeIs('dashboard'))
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
-                        <x-nav-link :href="'#'" :active="request()->routeIs('users.index')">
-                            {{ __('kegiatan') }}
-                        </x-nav-link>
-                        <x-nav-link :href="'#'" :active="request()->routeIs('reports.index')">
-                            {{ __('proyek') }}
-                        </x-nav-link>
-                        <x-nav-link :href="'#'" :active="request()->routeIs('products.index')">
-                            {{ __('proyek') }}
-                        </x-nav-link>
-                        <x-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
-                            {{ __('sektor') }}
-                        </x-nav-link>
-                        <x-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
-                            {{ __('laporan') }}
-                        </x-nav-link>
-                        <x-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
-                            {{ __('mitra') }}
-                        </x-nav-link>
-                    @elseif(auth()->user()->level === 'mitra' && request()->routeIs('dashboard'))
-                        {{-- Kosong untuk mitra di halaman dashboard --}}
-                    @else
-                        <x-nav-link :href="url('/')" :active="request()->is('/')">
-                            {{ __('Beranda') }}
-                        </x-nav-link>
-                        <x-nav-link :href="url('/tentang')" :active="request()->is('tentang')">
-                            {{ __('Tentang') }}
-                        </x-nav-link>
-                        <x-nav-link :href="url('/kegiatan')" :active="request()->is('kegiatan')">
-                            {{ __('Kegiatan') }}
-                        </x-nav-link>
-                        <x-nav-link :href="url('/statistik')" :active="request()->is('statistik')">
-                            {{ __('Statistik') }}
-                        </x-nav-link>
-                        <x-nav-link :href="url('/sektor')" :active="request()->is('sektor')">
-                            {{ __('Sektor') }}
-                        </x-nav-link>
-                        <x-nav-link :href="url('/laporan')" :active="request()->is('laporan')">
-                            {{ __('Laporan') }}
-                        </x-nav-link>
-                        <x-nav-link :href="url('/mitra-list')" :active="request()->is('mitra-list')">
-                            {{ __('Mitra') }}
-                        </x-nav-link>
+                    @if(auth()->user()->level === 'admin')
+                        @if(request()->routeIs('dashboard'))
+                            <!-- Admin navigation links for dashboard -->
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-nav-link>
+                            <x-nav-link :href="'#'" :active="request()->routeIs('users.index')">
+                                {{ __('kegiatan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="'#'" :active="request()->routeIs('reports.index')">
+                                {{ __('proyek') }}
+                            </x-nav-link>
+                            <x-nav-link :href="'#'" :active="request()->routeIs('products.index')">
+                                {{ __('proyek') }}
+                            </x-nav-link>
+                            <x-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
+                                {{ __('sektor') }}
+                            </x-nav-link>
+                            <x-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
+                                {{ __('laporan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
+                                {{ __('mitra') }}
+                            </x-nav-link>
+                        @else
+                            <!-- Admin navigation links for other pages -->
+                            <x-nav-link :href="url('/')" :active="request()->is('/')">
+                                {{ __('Beranda') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/tentang')" :active="request()->is('tentang')">
+                                {{ __('Tentang') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/kegiatan')" :active="request()->is('kegiatan')">
+                                {{ __('Kegiatan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/statistik')" :active="request()->is('statistik')">
+                                {{ __('Statistik') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/sektor')" :active="request()->is('sektor')">
+                                {{ __('Sektor') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/laporan')" :active="request()->is('laporan')">
+                                {{ __('Laporan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/mitra-list')" :active="request()->is('mitra-list')">
+                                {{ __('Mitra') }}
+                            </x-nav-link>
+                        @endif
+                    @elseif(auth()->user()->level === 'mitra')
+                        @if(request()->routeIs('home'))
+                            <!-- Mitra navigation links for home page -->
+                            <x-nav-link :href="url('/')" :active="request()->is('/')">
+                                {{ __('Beranda') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/tentang')" :active="request()->is('tentang')">
+                                {{ __('Tentang') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/kegiatan')" :active="request()->is('kegiatan')">
+                                {{ __('Kegiatan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/statistik')" :active="request()->is('statistik')">
+                                {{ __('Statistik') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/sektor')" :active="request()->is('sektor')">
+                                {{ __('Sektor') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/laporan')" :active="request()->is('laporan')">
+                                {{ __('Laporan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/mitra-list')" :active="request()->is('mitra-list')">
+                                {{ __('Mitra') }}
+                            </x-nav-link>
+                        @elseif(request()->routeIs('dashboard') || request()->routeIs('summary.show') || request()->routeIs('summary.edit'))
+                            <!-- Empty navbar for mitra on dashboard, summary, and summary-edit pages -->
+                        @else
+                            <!-- Mitra navigation links for other pages -->
+                            <x-nav-link :href="url('/')" :active="request()->is('/')">
+                                {{ __('Beranda') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/tentang')" :active="request()->is('tentang')">
+                                {{ __('Tentang') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/kegiatan')" :active="request()->is('kegiatan')">
+                                {{ __('Kegiatan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/statistik')" :active="request()->is('statistik')">
+                                {{ __('Statistik') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/sektor')" :active="request()->is('sektor')">
+                                {{ __('Sektor') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/laporan')" :active="request()->is('laporan')">
+                                {{ __('Laporan') }}
+                            </x-nav-link>
+                            <x-nav-link :href="url('/mitra-list')" :active="request()->is('mitra-list')">
+                                {{ __('Mitra') }}
+                            </x-nav-link>
+                        @endif
                     @endif
                 @else
+                    <!-- Navigation links for non-logged in users -->
                     <x-nav-link :href="url('/')" :active="request()->is('/')">
                         {{ __('Beranda') }}
                     </x-nav-link>
@@ -98,8 +151,8 @@
                             @if(Auth::user()->level === 'admin' || $isProfileComplete)
                                 <div class="flex items-center space-x-4">
                                     <div class="flex flex-col items-start">
-                                        <span class="font-semibold" style="font-family: Inter; font-size: 16px; font-weight: 500; line-height: 24px; color: #101828;">{{ Auth::user()->name }}</span>
-                                        <span class="text-sm ml-auto" style="font-family: Inter; font-size: 16px; font-weight: 400; line-height: 20px; color: #667085;">{{ ucfirst(Auth::user()->level) }}</span>
+                                        <span class="font-semibold" style=" font-size: 16px; font-weight: 500; line-height: 24px; color: #101828;">{{ Auth::user()->name }}</span>
+                                        <span class="text-sm ml-auto" style=" font-size: 16px; font-weight: 400; line-height: 20px; color: #667085;">{{ ucfirst(Auth::user()->level) }}</span>
                                     </div>
                                     <div class="flex-shrink-0">
                                         @if(Auth::user()->summary && Auth::user()->summary->foto_pp)
@@ -157,54 +210,107 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @if(auth()->check())
-                @if(auth()->user()->level === 'admin' && request()->routeIs('dashboard'))
-                    <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="'#'" :active="request()->routeIs('users.index')">
-                        {{ __('kegiatan') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="'#'" :active="request()->routeIs('reports.index')">
-                        {{ __('proyek') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="'#'" :active="request()->routeIs('products.index')">
-                        {{ __('proyek') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
-                        {{ __('sektor') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
-                        {{ __('laporan') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
-                        {{ __('mitra') }}
-                    </x-responsive-nav-link>
-                @elseif(auth()->user()->level === 'mitra' && request()->routeIs('dashboard'))
-                    {{-- Kosong untuk mitra di halaman dashboard --}}
-                @else
-                    <x-responsive-nav-link :href="url('/')" :active="request()->is('/')">
-                        {{ __('Beranda') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="url('/tentang')" :active="request()->is('tentang')">
-                        {{ __('Tentang') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="url('/kegiatan')" :active="request()->is('kegiatan')">
-                        {{ __('Kegiatan') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="url('/statistik')" :active="request()->is('statistik')">
-                        {{ __('Statistik') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="url('/sektor')" :active="request()->is('sektor')">
-                        {{ __('Sektor') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="url('/laporan')" :active="request()->is('laporan')">
-                        {{ __('Laporan') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="url('/mitra-list')" :active="request()->is('mitra-list')">
-                        {{ __('Mitra') }}
-                    </x-responsive-nav-link>
+                @if(auth()->user()->level === 'admin')
+                    @if(request()->routeIs('dashboard'))
+                        <!-- Admin responsive navigation links for dashboard -->
+                        <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="'#'" :active="request()->routeIs('users.index')">
+                            {{ __('kegiatan') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="'#'" :active="request()->routeIs('reports.index')">
+                            {{ __('proyek') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="'#'" :active="request()->routeIs('products.index')">
+                            {{ __('proyek') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
+                            {{ __('sektor') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
+                            {{ __('laporan') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="'#'" :active="request()->routeIs('sales.index')">
+                            {{ __('mitra') }}
+                        </x-responsive-nav-link>
+                    @else
+                        <!-- Admin responsive navigation links for other pages -->
+                        <x-responsive-nav-link :href="url('/')" :active="request()->is('/')">
+                            {{ __('Beranda') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/tentang')" :active="request()->is('tentang')">
+                            {{ __('Tentang') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/kegiatan')" :active="request()->is('kegiatan')">
+                            {{ __('Kegiatan') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/statistik')" :active="request()->is('statistik')">
+                            {{ __('Statistik') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/sektor')" :active="request()->is('sektor')">
+                            {{ __('Sektor') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/laporan')" :active="request()->is('laporan')">
+                            {{ __('Laporan') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/mitra-list')" :active="request()->is('mitra-list')">
+                            {{ __('Mitra') }}
+                        </x-responsive-nav-link>
+                    @endif
+                @elseif(auth()->user()->level === 'mitra')
+                    @if(request()->routeIs('home'))
+                        <!-- Mitra responsive navigation links for home page -->
+                        <x-responsive-nav-link :href="url('/')" :active="request()->is('/')">
+                            {{ __('Beranda') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/tentang')" :active="request()->is('tentang')">
+                            {{ __('Tentang') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/kegiatan')" :active="request()->is('kegiatan')">
+                            {{ __('Kegiatan') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/statistik')" :active="request()->is('statistik')">
+                            {{ __('Statistik') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/sektor')" :active="request()->is('sektor')">
+                            {{ __('Sektor') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/laporan')" :active="request()->is('laporan')">
+                            {{ __('Laporan') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/mitra-list')" :active="request()->is('mitra-list')">
+                            {{ __('Mitra') }}
+                        </x-responsive-nav-link>
+                    @elseif(request()->routeIs('dashboard') || request()->routeIs('summary.show') || request()->routeIs('summary.edit'))
+                        <!-- Empty responsive navbar for mitra on dashboard, summary, and summary-edit pages -->
+                    @else
+                        <!-- Mitra responsive navigation links for other pages -->
+                        <x-responsive-nav-link :href="url('/')" :active="request()->is('/')">
+                            {{ __('Beranda') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/tentang')" :active="request()->is('tentang')">
+                            {{ __('Tentang') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/kegiatan')" :active="request()->is('kegiatan')">
+                            {{ __('Kegiatan') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/statistik')" :active="request()->is('statistik')">
+                            {{ __('Statistik') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/sektor')" :active="request()->is('sektor')">
+                            {{ __('Sektor') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/laporan')" :active="request()->is('laporan')">
+                            {{ __('Laporan') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="url('/mitra-list')" :active="request()->is('mitra-list')">
+                            {{ __('Mitra') }}
+                        </x-responsive-nav-link>
+                    @endif
                 @endif
             @else
+                <!-- Responsive navigation links for non-logged in users -->
                 <x-responsive-nav-link :href="url('/')" :active="request()->is('/')">
                     {{ __('Beranda') }}
                 </x-responsive-nav-link>
