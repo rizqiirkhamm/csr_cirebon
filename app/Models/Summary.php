@@ -11,6 +11,8 @@ class Summary extends Model
 
     protected $guarded = [];
 
+    protected $table = 'summary';
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
