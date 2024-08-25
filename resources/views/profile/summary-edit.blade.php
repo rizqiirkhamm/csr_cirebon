@@ -1,4 +1,4 @@
-<x-app-layout class="flex flex-col min-h-screen">
+ <x-app-layout class="flex flex-col min-h-screen">
     <div class="py-12 flex-grow">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Breadcrumb -->
