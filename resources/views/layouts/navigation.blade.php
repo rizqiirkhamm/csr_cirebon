@@ -2,6 +2,7 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
+<<<<<<< HEAD
             <!-- Logo -->
             <div class="shrink-0 flex items-center">
                 <a href="{{ url('/') }}">
@@ -52,6 +53,38 @@
                         {{ __('Mitra') }}
                     </x-nav-link>
                 @endif
+=======
+                <!-- Logo -->
+                <div class="shrink-0 flex items-center">
+                    <a href="{{ url('/') }}">
+                        <x-application-logo class="block h-3 w-auto fill-current text-gray-800" />
+                    </a>
+                </div>
+
+            <!-- Navigation Links -->
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="url('/')" :active="request()->routeIs('home')">
+                    {{ __('Beranda') }}
+                </x-nav-link>
+                <x-nav-link :href="url('/tentang')" :active="request()->routeIs('tentang')">
+                    {{ __('Tentang') }}
+                </x-nav-link>
+                <x-nav-link :href="url('/kegiatan')" :active="request()->routeIs('kegiatan')">
+                    {{ __('Kegiatan') }}
+                </x-nav-link>
+                <x-nav-link :href="url('/statistik')" :active="request()->routeIs('statistik')">
+                    {{ __('Statistik') }}
+                </x-nav-link>
+                <x-nav-link :href="url('/sektor')" :active="request()->routeIs('sektor')">
+                    {{ __('Sektor') }}
+                </x-nav-link>
+                <x-nav-link :href="url('/laporan')" :active="request()->routeIs('laporan')">
+                    {{ __('Laporan') }}
+                </x-nav-link>
+                <x-nav-link :href="url('/mitra-list')" :active="request()->routeIs('mitra')">
+                    {{ __('Mitra') }}
+                </x-nav-link>
+>>>>>>> 35f7ae5ae1b17b16eac514244253f31014c57c91
             </div>
 
             <!-- Settings Dropdown -->
@@ -60,6 +93,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+<<<<<<< HEAD
                             @php
                                 $summary = Auth::user()->summary;
                                 $isProfileComplete = $summary && $summary->nama && $summary->nama_mitra && $summary->email && $summary->no_telp && $summary->alamat && $summary->deskripsi;
@@ -82,16 +116,29 @@
                             @else
                                 <span>{{ __('Menu') }}</span>
                             @endif
+=======
+                            @auth       
+                            <div>{{ Auth::user()->name }}</div>
+                            @endauth
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+>>>>>>> 35f7ae5ae1b17b16eac514244253f31014c57c91
                         </button>
                     </x-slot>
 
                     <x-slot name="content">
+<<<<<<< HEAD
                         @if(Auth::user()->level === 'admin' || $isProfileComplete)
                             <x-dropdown-link :href="route('summary.show')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
                         @endif
 
+=======
+>>>>>>> 35f7ae5ae1b17b16eac514244253f31014c57c91
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -104,9 +151,16 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+<<<<<<< HEAD
                 @else
                     <a href="/register" class="px-4 py-2 bg-red-800 text-white rounded-md">Pengajuan</a>
                 @endauth
+=======
+                @endauth
+                @guest
+                    <a href="/register" class="px-4 py-2 bg-red-800 text-white rounded-md">Pengajuan</a>
+                @endguest
+>>>>>>> 35f7ae5ae1b17b16eac514244253f31014c57c91
             </div>
 
             <!-- Hamburger -->
@@ -124,6 +178,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+<<<<<<< HEAD
             @if(Auth::user() && Auth::user()->level === 'admin')
                 <x-responsive-nav-link :href="'#'" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
@@ -165,6 +220,29 @@
                     {{ __('Mitra') }}
                 </x-responsive-nav-link>
             @endif
+=======
+            <x-responsive-nav-link :href="url('/')" :active="request()->routeIs('home')">
+                {{ __('Beranda') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/tentang')" :active="request()->routeIs('tentang')">
+                {{ __('Tentang') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/kegiatan')" :active="request()->routeIs('kegiatan')">
+                {{ __('Kegiatan') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/statistik')" :active="request()->routeIs('statistik')">
+                {{ __('Statistik') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/sektor')" :active="request()->routeIs('sektor')">
+                {{ __('Sektor') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/laporan')" :active="request()->routeIs('laporan')">
+                {{ __('Laporan') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/mitra')" :active="request()->routeIs('mitra')">
+                {{ __('Mitra') }}
+            </x-responsive-nav-link>
+>>>>>>> 35f7ae5ae1b17b16eac514244253f31014c57c91
         </div>
 
         <!-- Responsive Settings Options -->
@@ -177,12 +255,15 @@
             </div>
 
             <div class="mt-3 space-y-1">
+<<<<<<< HEAD
                 @if(Auth::user() && (Auth::user()->level === 'admin' || $isProfileComplete))
                     <x-responsive-nav-link :href="route('summary.show')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
                 @endif
 
+=======
+>>>>>>> 35f7ae5ae1b17b16eac514244253f31014c57c91
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
