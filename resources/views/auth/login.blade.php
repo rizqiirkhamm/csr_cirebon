@@ -109,7 +109,7 @@ pasti tau lah dan body dijaddin div
         setTimeout(function() {
             skeletonLoader.classList.add('hidden');
             content.classList.remove('hidden');
-        }, 1500);
+        }, 500);
     });
 
     // Toggle password visibility

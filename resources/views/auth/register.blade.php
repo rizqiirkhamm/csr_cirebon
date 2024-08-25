@@ -115,7 +115,7 @@ pasti tau lah dan body dijaddin div
             // Hide skeleton loader and show content
             skeletonLoader.classList.add('hidden');
             content.classList.remove('hidden');
-        }, 1500);
+        }, 500);
     });
 
     function togglePasswordVisibility(inputId) {
