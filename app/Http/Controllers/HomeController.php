@@ -7,7 +7,7 @@ use App\Models\Sektor;
 use App\Models\Laporan;
 use App\Models\Kegiatan;
 use App\Models\Proyek;
-use App\Models\Mitra;
+use App\Models\Summary;
 use App\Models\Faq;
 use App\Helpers\FormatHelper;
 
@@ -22,8 +22,8 @@ class HomeController extends Controller
     $kegiatan = Kegiatan::latest()->take(4)->get();
     $sektor = Sektor::all();
     $jumlahProyek = Proyek::count();
-    $jumlahMitra = Mitra::count();
-    $mitra = Mitra::all();
+    $jumlahMitra = Summary::count();
+    $mitra = Summary::all();
     $laporan = Laporan::all();
     $faq = Faq::all();
 

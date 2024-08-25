@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proyek;
-use App\Models\Mitra;
+use App\Models\Summary;
 use App\Models\Sektor;
 use App\Models\Laporan;
 use App\Helpers\FormatHelper;
@@ -18,7 +18,7 @@ class StatsController extends Controller
     {
         $jumlahProyek = Proyek::count();
 
-        $jumlahMitra = Mitra::count();
+        $jumlahMitra = Summary::count();
 
         // Menghitung total dana realisasi
         $totalDanaRealisasi = Laporan::sum('realisasi');
