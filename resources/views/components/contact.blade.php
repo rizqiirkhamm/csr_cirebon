@@ -7,7 +7,7 @@
         {{-- Item Contact --}}
         <div class="w-full justify-between items-center flex mt-5">
             <div class="w-1/5 h-20 flex justify-start items-start">
-                <img class="h-12" src="{{asset ('images/maps.png')}}" alt="">
+                <img class="h-12" src="{{Storage::url('images/maps.png')}}" alt="">
             </div>
             <div class="w-4/5 h-20 flex justify-center items-start flex-col">
                 <h1 class="font-bold text-xl">Alamat</h1>
@@ -16,7 +16,7 @@
         </div>
         <div class="w-full justify-between items-center flex">
             <div class="w-1/5 h-20 flex justify-start items-start">
-                <img class="h-12" src="{{asset ('images/call.png')}}" alt="">
+                <img class="h-12" src="{{Storage::url('images/call.png')}}" alt="">
             </div>
             <div class="w-4/5 h-20 flex justify-center items-start flex-col">
                 <h1 class="font-bold text-xl">Phone</h1>
@@ -25,7 +25,7 @@
         </div>
         <div class="w-full justify-between items-center flex">
             <div class="w-1/5 h-20 flex justify-start items-start">
-                <img class="h-12" src="{{asset ('images/mail.png')}}" alt="">
+                <img class="h-12" src="{{Storage::url('images/mail.png')}}" alt="">
             </div>
             <div class="w-4/5 h-20 flex justify-center items-start flex-col">
                 <h1 class="font-bold text-xl">Email</h1>

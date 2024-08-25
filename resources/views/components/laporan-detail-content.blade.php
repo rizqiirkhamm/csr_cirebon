@@ -7,7 +7,7 @@
     </div>
     <div class="grid grid-cols-4 gap-4 pb-5 max-md:grid-cols-1">
         <div>
-            <img class="max-w-full rounded-lg" src="{{ asset('images/' . $laporan->laporan) }}" alt="">
+            <img class="max-w-full rounded-lg" src="{{ asset('storage/images/' . $laporan->thumbnail) }}" alt="">
         </div>
     </div>
     <div class="w-full h-auto py-10 grid grid-cols-3 gap-3 max-md:grid-cols-1">

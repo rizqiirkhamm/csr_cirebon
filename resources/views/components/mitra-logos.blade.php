@@ -7,7 +7,7 @@
     <div class='w-full grid grid-cols-5 max-md:grid-cols-3 gap-10 justify-center items-center'>
         @foreach ($mitra as $item)
         <div class='flex justify-center items-center h-full w-full'>
-            <img src="{{$item->foto_mitra}}" class='h-20' alt="" />
+            <img src="{{ asset('storage/images/profile/' . $item->foto_pp) }}" class='h-20' alt="" />
         </div>
         @endforeach
     </div>

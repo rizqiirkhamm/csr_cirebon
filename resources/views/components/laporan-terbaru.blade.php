@@ -6,7 +6,7 @@
         <!-- {{-- Card Kegiatan --}} -->
         @foreach ($laporan as $item)
             <a href="{{ route('laporan.show', $item->id) }}" class="w-full h-[350px] border-2 rounded-md flex justify-start items-center flex-col hover:bg-slate-100 transition">
-            <img class="w-full h-1/2 rounded-t-md object-cover" src="images/{{$item->thumbnail}}" alt="">
+            <img class="w-full h-1/2 rounded-t-md object-cover" src="{{ asset('storage/images/' . $item->thumbnail) }}" alt="">
             <div class="w-full flex justify-start items-start flex-col p-5 space-y-3">
                 <h1 class="text-xl font-bold text-ellipsis">{{$item->judul_laporan}}</h1>
                 <h1 class="text-lg font-thin max-md:hidden">{{ Str::limit($item->deskripsi, 25, '...') }}</h1>
