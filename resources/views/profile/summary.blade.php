@@ -41,9 +41,9 @@
                                     </div>
                                     <div class="w-full md:w-6/12">
                                         <div class="w-full space-y-4">
-                                            <h3 class="text-2xl font-semibold">{{ $user->name }}</h3>
+                                            <h3 class="text-2xl font-semibold">{{ $user->summary->nama_mitra ?? 'Nama Mitra belum diisi' }}</h3>
 
-                                            <p class="text-xl text-gray-600">{{ $user->email }}</p>
+                                            <p class="text-xl text-gray-600">{{ $user->name }}</p>
 
                                             @if($user->level === 'mitra')
                                          
@@ -53,7 +53,7 @@
                                                         <rect x="2" y="2" width="32" height="32" rx="16" stroke="#FFF1F0" stroke-width="4"/>
                                                         <path d="M11.333 14.666L16.7763 18.4763C17.2171 18.7849 17.4375 18.9391 17.6772 18.9989C17.8889 19.0517 18.1104 19.0517 18.3222 18.9989C18.5619 18.9391 18.7823 18.7849 19.2231 18.4763L24.6663 14.666M14.533 23.3327H21.4663C22.5864 23.3327 23.1465 23.3327 23.5743 23.1147C23.9506 22.9229 24.2566 22.617 24.4484 22.2407C24.6663 21.8128 24.6663 21.2528 24.6663 20.1327V15.866C24.6663 14.7459 24.6663 14.1859 24.4484 13.758C24.2566 13.3817 23.9506 13.0757 23.5743 12.884C23.1465 12.666 22.5864 12.666 21.4663 12.666H14.533C13.4129 12.666 12.8529 12.666 12.425 12.884C12.0487 13.0757 11.7427 13.3817 11.551 13.758C11.333 14.1859 11.333 14.7459 11.333 15.866V20.1327C11.333 21.2528 11.333 21.8128 11.551 22.2407C11.7427 22.617 12.0487 22.9229 12.425 23.1147C12.8529 23.3327 13.4129 23.3327 14.533 23.3327Z" stroke="#98100A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
                                                     </svg>
-                                                    <span>{{ $user->summary->nama_mitra ?? 'Nama Mitra belum diisi' }}</span>
+                                                    <span>{{ $user->email }}</span>
                                                 </div>
 
                                                 <div class="flex items-center">

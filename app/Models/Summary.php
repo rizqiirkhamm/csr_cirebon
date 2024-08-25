@@ -21,9 +21,7 @@ class Summary extends Model
         'alamat',
         'deskripsi',
     ];
-
-    protected $table = 'summary';
-
+    
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
