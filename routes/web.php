@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $user = Auth::user();
-    if (!$user && $user->role->guest) {
+    if (!$user) {
         return redirect('/home'); // Redirect if user is not logged in
     } else {
         return redirect('/dashboard');
