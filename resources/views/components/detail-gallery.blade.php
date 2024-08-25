@@ -4,6 +4,6 @@
 </div>
 <div class="grid grid-cols-4 gap-4 px-60 pb-20 max-md:grid-cols-1 max-md:px-5">
     <div>
-        <img class="h-auto max-w-full rounded-lg" src="images/{{$proyek->foto_proyek}}" alt="">
+        <img class="h-auto max-w-full rounded-lg" src="{{ asset('storage/images/' . $proyek->thumbnail) }}" alt="">
     </div>
 </div>

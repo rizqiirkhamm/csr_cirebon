@@ -29,14 +29,16 @@
     <div class="w-full h-full grid grid-cols-4 max-md:grid-cols-2 grid-rows-1 justify-center items-center gap-5 mt-10">
         {{-- Card Proyek --}}
         @foreach ($laporan as $item)
+        @if ($item->status == 'terbit')
             <a href="{{ route('laporan.show', $item->id) }}" class="w-full h-[350px] border-2 rounded-md flex justify-start items-center flex-col hover:bg-slate-100 transition">
-            <img class="w-full h-1/2 rounded-t-md object-cover" src="https://asset-2.tstatic.net/jabar/foto/bank/images/bupati-cirebon-imron-rosyadi-saat-rapat.jpg" alt="">
+            <img class="w-full h-1/2 rounded-t-md object-cover" src="{{ asset('storage/images/' . $item->thumbnail) }}" alt="">
             <div class="w-full h1/2 flex justify-start items-start flex-col p-5 space-y-3">
                 <h1 class="text-xl font-bold text-ellipsis">{{$item->judul_laporan}}</h1>
                 <h1 class="text-lg font-thin max-md:hidden">{{ Str::limit($item->deskripsi, 25, '...') }}</h1>
                 <h1 class="text-lg font-thin hidden max-md:block">{{ Str::limit($item->deskripsi, 15, '...') }}</h1>
             </div>
         </a>
+        @endif
         @endforeach
     </div>
 </div>

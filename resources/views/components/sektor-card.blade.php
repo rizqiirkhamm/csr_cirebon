@@ -7,7 +7,7 @@
         {{-- Card Sektor --}}
         @foreach ($sektor as $item)
         <div class="w-full h-96 border-2 rounded-md flex justify-start items-center flex-col">
-            <img class="w-full h-1/2 rounded-t-md object-cover" src="images/{{$item->thumbnail}}" alt="">
+            <img class="w-full h-1/2 rounded-t-md object-cover" src="{{ asset('storage/images/' . $item->thumbnail) }}" alt="">
             <div class="w-full h1/2 flex justify-start items-start flex-col p-5 space-y-5">
                 <h1 class="font-bold text-2xl">{{$item->nama_sektor}}</h1>
                 <h1 class="w-full font-normal text-base px-3 py-1 bg-slate-200 rounded-md">Tersedia : 100</h1>

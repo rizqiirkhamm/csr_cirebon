@@ -52,7 +52,7 @@
             // Update konten detail sektor
             detailContainer.innerHTML = `
                 <div class="space-y-3 w-full h-full flex flex-col justify-start items-start">
-                    <img class="h-80 rounded-lg" src="images/${selectedSektor.thumbnail}" alt="">
+                    <img class="h-80 rounded-lg" src="${window.location.origin}/storage/images/${selectedSektor.thumbnail}" alt="">
                     <p>${selectedSektor.deskripsi}</p>
                 </div>
             `;
