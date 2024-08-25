@@ -20,20 +20,6 @@ class StatsController extends Controller
 
         $jumlahMitra = Summary::count();
 
-        $sektorRealisasi = Sektor::with(['programs.proyeks.laporans'])
-            ->get()
-            ->map(function($sektor) {
-                return [
-                    'nama_sektor' => $sektor->nama_sektor,
-                    'realisasi' => $sektor->programs->flatMap(function($program) {
-                        return $program->proyeks->flatMap->laporans;
-                    })->sum('realisasi'),
-                ];
-            });
-
-        $categories = $sektorRealisasi->pluck('nama_sektor')->toArray();
-        $data = $sektorRealisasi->pluck('realisasi')->toArray();
-
         // Menghitung total dana realisasi
         $totalDanaRealisasi = Laporan::sum('realisasi');
 
@@ -43,7 +29,7 @@ class StatsController extends Controller
         // Menghitung jumlah proyek yang terealisasi
         $jumlahProyekTerealisasi = Proyek::whereHas('laporan')->count();
 
-        return view('stats', compact('jumlahProyek', 'jumlahMitra', 'formattedDanaRealisasi', 'jumlahProyekTerealisasi', 'categories', 'data'));
+        return view('stats', compact('jumlahProyek', 'jumlahMitra', 'formattedDanaRealisasi', 'jumlahProyekTerealisasi'));
     }
 
     /**
