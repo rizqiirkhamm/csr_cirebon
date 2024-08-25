@@ -20,6 +20,8 @@ use App\Http\Controllers\LingkunganController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\ProyekController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SummaryController;
+
 
 
 // Website Routes
@@ -103,12 +105,19 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/mitra', [MitraController::class, 'mitra'])->name('mitra');
-    Route::get('/profile', [MitraController::class, 'show'])->name('profile.profile');
-    Route::get('/profile/edit', [MitraController::class, 'edit'])->name('profile.edit-mitra');
-    Route::patch('/profile', [MitraController::class, 'update'])->name('profile.update');
-});
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+Route::get('/summary', [SummaryController::class, 'show'])->name('summary.show');
+Route::get('/summary/edit/{id}', [SummaryController::class, 'edit'])->name('summary.edit');
+Route::put('/summary/update/{id}', [SummaryController::class, 'update'])->name('summary.update');
+Route::post('/summary/store', [SummaryController::class, 'store'])->name('summary.store');
+
+
 
 // Email Verifications
 Route::get('/email/verify', function () {
@@ -125,5 +134,4 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-
-require __DIR__.'/auth.php'; 
+require __DIR__.'/auth.php';
