@@ -33,19 +33,15 @@
                 </div>
 
 
-                @if(Auth::user()->level !== 'admin')
-                    <!-- Nama PT (hanya untuk mitra) -->
-                    <div>
-                        <label for="nama" class="block text-sm font-medium text-gray-700">
-                            Nama <span class="text-red-600">*</span>
-                        </label>
-                        <div class="mt-1">
-                            <input type="text" name="nama_mitra" id="nama_mitra" value="{{ old('nama_mitra', $summary->nama_mitra ?? '') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
-                        </div>
+                <div>
+                    <label for="nama" class="block text-sm font-medium text-gray-700">
+                        Nama <span class="text-red-600">*</span>
+                    </label>
+                    <div class="mt-1">
+                        <input type="text" name="nama_mitra" id="nama_mitra" value="{{ old('nama_mitra', $summary->nama_mitra ?? '') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
                     </div>
-                @endif
+                </div>
 
-                  <!-- Nama PT (hanya untuk mitra) -->
                   <div>
                     <label for="nama_mitra" class="block text-sm font-medium text-gray-700">
                         Nama PT <span class="text-red-600">*</span>
@@ -55,7 +51,6 @@
                     </div>
                 </div>
 
-                <!-- Email -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">
                         Email <span class="text-red-600">*</span>
@@ -65,29 +60,24 @@
                     </div>
                 </div>
 
-                @if(Auth::user()->level !== 'admin')
-                    <!-- Nomor Telepon (hanya untuk mitra) -->
-                    <div>
-                        <label for="no_telp" class="block text-sm font-medium text-gray-700">
-                            Nomor Telepon <span class="text-red-600">*</span>
-                        </label>
-                        <div class="mt-1">
-                            <input type="text" name="no_telp" id="no_telp" value="{{ old('no_telp', $summary->no_telp ?? '') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
-                        </div>
+                <div>
+                    <label for="no_telp" class="block text-sm font-medium text-gray-700">
+                        Nomor Telepon <span class="text-red-600">*</span>
+                    </label>
+                    <div class="mt-1">
+                        <input type="text" name="no_telp" id="no_telp" value="{{ old('no_telp', $summary->no_telp ?? '') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">
                     </div>
+                </div>
 
-                    <!-- Alamat (hanya untuk mitra) -->
-                    <div>
-                        <label for="alamat" class="block text-sm font-medium text-gray-700">
-                            Alamat <span class="text-red-600">*</span>
-                        </label>
-                        <div class="mt-1">
-                            <textarea name="alamat" id="alamat" rows="3" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">{{ old('alamat', $summary->alamat ?? '') }}</textarea>
-                        </div>
+                <div>
+                    <label for="alamat" class="block text-sm font-medium text-gray-700">
+                        Alamat <span class="text-red-600">*</span>
+                    </label>
+                    <div class="mt-1">
+                        <textarea name="alamat" id="alamat" rows="3" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-[#98100A] focus:border-[#98100A] sm:text-sm">{{ old('alamat', $summary->alamat ?? '') }}</textarea>
                     </div>
-                @endif
+                </div>
 
-                <!-- Deskripsi -->
                 <div>
                     <label for="deskripsi" class="block text-sm font-medium text-gray-700">
                         Deskripsi <span class="text-red-600">*</span>
