@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Mitra;
+use App\Models\Summary;
 
 class MitraListController extends Controller
 {
@@ -12,7 +12,7 @@ class MitraListController extends Controller
      */
     public function index()
     {
-        $mitra = Mitra::all();
+        $mitra = Summary::all();
         return view('mitra-list.index', compact('mitra'));
     }
 
@@ -37,7 +37,7 @@ class MitraListController extends Controller
      */
     public function show(string $id)
     {
-        $mitra = Mitra::findOrFail($id);
+        $mitra = Summary::findOrFail($id);
         return view('mitra-list.detail', compact('mitra'));
     }
 

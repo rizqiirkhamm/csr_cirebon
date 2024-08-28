@@ -24,7 +24,7 @@
         {{-- Card Proyek --}}
         @foreach ($mitra as $item)
             <a href="{{ route('mitra-list.show', $item->id) }}" class="w-full h-[350px] border-2 rounded-md flex justify-start items-center flex-col hover:bg-slate-100 transition">
-            <img class="w-full h-1/2 rounded-t-md object-cover" src="{{$item->foto_mitra}}" alt="">
+            <img class="w-full h-1/2 rounded-t-md object-cover" src="{{ asset('storage/images/profile/' . $item->foto_pp) }}" alt="">
             <div class="w-full flex justify-start items-start flex-col p-5 space-y-3">
                 <h1 class="text-xl font-bold text-ellipsis">{{$item->nama_mitra}}</h1>
             </div>

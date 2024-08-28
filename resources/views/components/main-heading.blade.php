@@ -1,5 +1,5 @@
 {{-- Heading --}}
-<div class="w-screen h-screen flex max-md:flex-col justify-between items-center pt-20 bg-cover bg-center bg-responsive">
+<div class="w-screen h-screen flex max-md:flex-col justify-between items-center bg-cover bg-center bg-responsive">
     <div class="w-1/2 max-md:w-full max-md:h-1/2 h-full flex flex-col justify-center items-start space-y-4">
         <h1 class=' font-black text-6xl text-white pl-60 max-md:px-5 max-md:text-5xl'>Selamat datang di portal CSR
             Kab. Cirebon</h1>
@@ -36,14 +36,14 @@
 
 <style>
     .bg-responsive {
-        background-image: url('/images/bg.png');
+        background-image: url({{Storage::url('images/bg.png')}});
         background-size: cover;
         background-repeat: no-repeat;
     }
 
     @media (max-width: 768px) {
         .bg-responsive {
-            background-image: url('/images/bg-phone.png');
+            background-image: url({{Storage::url('images/bg-phone.png')}});
         }
     }
 

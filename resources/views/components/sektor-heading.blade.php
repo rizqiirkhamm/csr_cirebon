@@ -8,7 +8,7 @@
 
 <style>
     .bg-responsive {
-    background-image: url('/images/bg2.png');
+    background-image: url({{Storage::url('images/bg.png')}});
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -16,7 +16,7 @@
 @media (max-width: 768px) {
     /* For screens smaller than the md breakpoint */
     .bg-responsive {
-        background-image: url('/images/bg-phone.png');
+        background-image: url({{Storage::url('images/bg-phone.png')}});
     }
 }
 </style>

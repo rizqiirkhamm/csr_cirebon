@@ -1,9 +1,8 @@
-
 <x-app-layout>
     <div class="flex flex-col min-h-screen">
         <div class="flex-grow">
             <div class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-20">
                     <!-- Breadcrumb -->
                     <div class="mb-6">
                         <div class="flex items-center space-x-2">

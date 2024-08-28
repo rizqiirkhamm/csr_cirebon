@@ -7,16 +7,15 @@
 </div>
 
 <style>
-    .bg-responsive {
-    background-image: url('/images/bg2.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-@media (max-width: 768px) {
-    /* For screens smaller than the md breakpoint */
-    .bg-responsive {
-        background-image: url('/images/bg-phone.png');
+.bg-responsive {
+        background-image: url({{Storage::url('images/bg.png')}});
+        background-size: cover;
+        background-repeat: no-repeat;
     }
-}
+
+    @media (max-width: 768px) {
+        .bg-responsive {
+            background-image: url({{Storage::url('images/bg-phone.png')}});
+        }
+    }
 </style>
