@@ -108,7 +108,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+// });222
 
 Route::get('/summary', [SummaryController::class, 'show'])->name('summary.show');
 Route::get('/summary/edit/{id}', [SummaryController::class, 'edit'])->name('summary.edit');
