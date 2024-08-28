@@ -23,7 +23,7 @@
         </div>
         <div class="w-full h-28 bg-gray-100 rounded-lg p-6">
             <h1 class="text-xl font-thin text-gray-600">Kecamatan</h1>
-            <h1 class="text-2xl font-bold text-gray-800">Kec. Sawangan</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Kec. {{$laporan->proyek->lokasi}}</h1>
         </div>
     </div>
     <div class="w-full pb-10 flex justify-center items-start flex-col">

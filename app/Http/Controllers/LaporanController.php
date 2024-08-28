@@ -12,8 +12,8 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $laporan = Laporan::all();
-        return view('laporan.index', compact('laporan'));
+        $laporans = Laporan::paginate(10);
+        return view('laporan.index', compact('laporans'));
     }
 
     /**
@@ -29,7 +29,19 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            // ... validasi lainnya ...
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('thumbnail')) {
+            $path = $request->file('thumbnail')->store('laporan_photos', 'public');
+            $validatedData['thumbnail'] = $path;
+        }
+
+        $laporan = Laporan::create($validatedData);
+
+        return redirect()->route('dashboard.laporan.index')->with('success', 'Laporan berhasil dibuat.');
     }
 
     /**
@@ -63,5 +75,83 @@ class LaporanController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function downloadCsv(Request $request)
+    {
+        $query = Laporan::query();
+
+        if ($request->filled('year')) {
+            $query->where('tahun', $request->year);
+        }
+
+        if ($request->filled('quarter')) {
+            $quarter = $request->quarter;
+            $query->where(function($q) use ($quarter) {
+                if ($quarter == 1) {
+                    $q->whereIn('bulan', [1, 2, 3]);
+                } elseif ($quarter == 2) {
+                    $q->whereIn('bulan', [4, 5, 6]);
+                } elseif ($quarter == 3) {
+                    $q->whereIn('bulan', [7, 8, 9]);
+                } elseif ($quarter == 4) {
+                    $q->whereIn('bulan', [10, 11, 12]);
+                }
+            });
+        }
+
+        $laporans = $query->get();
+
+        $csvFileName = 'laporan_' . date('Y-m-d') . '.csv';
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$csvFileName",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
+
+        $columns = ['Judul', 'Lokasi', 'Realisasi', 'Tanggal Realisasi', 'Status'];
+
+        $callback = function() use ($laporans, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($laporans as $laporan) {
+                $row['Judul'] = $laporan->judul_laporan;
+                $row['Lokasi'] = $laporan->lokasi;
+                $row['Realisasi'] = $laporan->realisasi;
+                $row['Tanggal Realisasi'] = $laporan->tgl_realisasi;
+                $row['Status'] = $laporan->status;
+
+                fputcsv($file, array($row['Judul'], $row['Lokasi'], $row['Realisasi'], $row['Tanggal Realisasi'], $row['Status']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function downloadPdf(Request $request)
+    {
+        // Implementasi unduh PDF
+        // ...
+    }
+
+    public function removeImage(Request $request, Laporan $laporan)
+    {
+        $imageToRemove = $request->image;
+        $currentImages = is_array($laporan->images) ? $laporan->images : json_decode($laporan->images, true) ?? [];
+        
+        if (($key = array_search($imageToRemove, $currentImages)) !== false) {
+            unset($currentImages[$key]);
+            Storage::delete($imageToRemove); // Hapus file dari storage
+        }
+        
+        $laporan->images = array_values($currentImages); // Re-index array
+        $laporan->save();
+        
+        return response()->json(['success' => true]);
     }
 }

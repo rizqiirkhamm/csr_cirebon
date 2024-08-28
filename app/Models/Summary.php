@@ -19,7 +19,7 @@ class Summary extends Model
         'no_telp',
         'email',
         'alamat',
-        'deskripsi',
+        'deskripsi'
     ];
 
     public function user()

@@ -53,19 +53,19 @@ class SummaryController extends Controller
         if ($user->level === 'admin') {
             $validatedData = $request->validate([
                 'foto_pp' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'nama' => 'required|string|max:255',
+                'nama' => 'nullable|string|max:255',
                 'email' => 'required|email|max:255',
                 'deskripsi' => 'nullable|string',
             ]);
         } else {
             $validatedData = $request->validate([
                 'foto_pp' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'nama_mitra' => 'required|string|min:11|max:255',
-                'nama' => 'required|string|min:11|max:255',
-                'no_telp' => 'required|string|min:11|max:20',
-                'email' => 'required|email|min:11|max:255',
-                'alamat' => 'nullable|string|min:11',
-                'deskripsi' => 'nullable|string|min:11',
+                'nama_mitra' => 'nullable|string|max:255',
+                'nama' => 'nullable|string|max:255',
+                'no_telp' => 'nullable|string|max:20',
+                'email' => 'required|email|max:255',
+                'alamat' => 'nullable|string',
+                'deskripsi' => 'nullable|string',
             ]);
         }
 
@@ -81,7 +81,9 @@ class SummaryController extends Controller
         $summary->save();
 
         // Update user name and email
-        $user->name = $validatedData['nama'];
+        if (isset($validatedData['nama'])) {
+            $user->name = $validatedData['nama'];
+        }
         $user->email = $validatedData['email'];
         $user->save();
 
@@ -98,15 +100,14 @@ class SummaryController extends Controller
         $summary = new Summary();
         $summary->id_user = $user->id;
 
-        // Validasi dan simpan data seperti di method update
         $validatedData = $request->validate([
             'foto_pp' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'nama_mitra' => 'required|string|min:11|max:255',
-            'nama' => 'required|string|min:11|max:255',
-            'no_telp' => 'required|string|min:11|max:20',
-            'email' => 'required|email|min:11|max:255',
-            'alamat' => 'nullable|string|min:11',
-            'deskripsi' => 'nullable|string|min:11',
+            'nama_mitra' => 'nullable|string|max:255',
+            'nama' => 'nullable|string|max:255',
+            'no_telp' => 'nullable|string|max:20',
+            'email' => 'required|email|max:255',
+            'alamat' => 'nullable|string',
+            'deskripsi' => 'nullable|string',
         ]);
 
         if ($request->hasFile('foto_pp')) {
@@ -119,7 +120,9 @@ class SummaryController extends Controller
         $summary->save();
 
         // Update user name and email
-        $user->name = $validatedData['nama_pt'];
+        if (isset($validatedData['nama'])) {
+            $user->name = $validatedData['nama'];
+        }
         $user->email = $validatedData['email'];
         $user->save();
 

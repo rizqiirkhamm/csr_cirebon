@@ -1,3 +1,5 @@
+@props(['laporans'])
+
 {{-- Proyek Tersedia --}}
 <div class="w-screen h-auto py-24 px-60 flex flex-col justify-center items-center max-md:px-5 bg-white">
     {{-- Input Filter & Search --}}
@@ -28,7 +30,7 @@
     </div>
     <div class="w-full h-full grid grid-cols-4 max-md:grid-cols-2 grid-rows-1 justify-center items-center gap-5 mt-10">
         {{-- Card Proyek --}}
-        @foreach ($laporan as $item)
+        @foreach ($laporans as $item)
             <a href="{{ route('laporan.show', $item->id) }}" class="w-full h-[350px] border-2 rounded-md flex justify-start items-center flex-col hover:bg-slate-100 transition">
             <img class="w-full h-1/2 rounded-t-md object-cover" src="https://asset-2.tstatic.net/jabar/foto/bank/images/bupati-cirebon-imron-rosyadi-saat-rapat.jpg" alt="">
             <div class="w-full h1/2 flex justify-start items-start flex-col p-5 space-y-3">

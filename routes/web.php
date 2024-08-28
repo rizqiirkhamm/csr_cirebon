@@ -21,7 +21,8 @@ use App\Http\Controllers\TentangController;
 use App\Http\Controllers\ProyekController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SummaryController;
-
+use App\Http\Controllers\DashboardLaporanController;
+use App\Http\Controllers\DashboardController;
 
 
 // Website Routes
@@ -40,10 +41,7 @@ Route::get('/statistik', function () {
 })->name('stats');
 Route::resource('/statistik', StatsController::class);
 
-Route::get('/laporan', function () {
-    return view('laporan.index');
-})->name('laporan');
-Route::resource('/laporan', LaporanController::class);
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 Route::get('/laporan/{id}', [LaporanController::class, 'show'])->name('laporan.show');
 
 Route::get('/sektor', function () {
@@ -101,9 +99,9 @@ Route::get('/kegiatan/{id}', [KegiatanController::class, 'show'])->name('kegiata
 
 Route::get('/proyek/{id}', [ProyekController::class, 'show'])->name('proyek.show');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 
 // Route::middleware('auth')->group(function () {
@@ -119,6 +117,31 @@ Route::post('/summary/store', [SummaryController::class, 'store'])->name('summar
 
 
 
+// Tambahkan ini di dalam grup middleware auth
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // Rute untuk laporan di dashboard
+    Route::get('/dashboard/laporan', [DashboardLaporanController::class, 'laporan'])->name('dashboard.laporan');
+    
+    Route::get('/dashboard/laporan/create', [DashboardLaporanController::class, 'create'])
+        ->middleware('can:create,App\Models\Laporan')
+        ->name('dashboard.laporan.create');
+    
+    Route::post('/dashboard/laporan', [DashboardLaporanController::class, 'store'])
+        ->name('dashboard.laporan.store');
+    
+    Route::get('/dashboard/laporan/{laporan}', [DashboardLaporanController::class, 'show'])->name('dashboard.laporan.show');
+    Route::put('/dashboard/laporan/{laporan}', [DashboardLaporanController::class, 'update'])->name('dashboard.laporan.update');
+    Route::get('/dashboard/laporan/detail/{id}', [DashboardLaporanController::class, 'detail'])->name('dashboard.laporan.detail');
+    Route::delete('/dashboard/laporan/{laporan}', [DashboardLaporanController::class, 'destroy'])->name('dashboard.laporan.destroy');
+    Route::get('/dashboard/laporan/{laporan}/edit', [DashboardLaporanController::class, 'edit'])->name('dashboard.laporan.edit');
+    Route::post('/dashboard/laporan/{laporan}/update-status', [DashboardController::class, 'updateStatus'])->name('dashboard.laporan.update-status')->middleware('auth');
+    Route::delete('/dashboard/laporan/{laporan}/remove-image', [DashboardLaporanController::class, 'removeImage'])->name('dashboard.laporan.remove-image');
+});
+
 // Email Verifications
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -133,5 +156,9 @@ Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/dashboard/laporan/download/csv', [LaporanController::class, 'downloadCsv'])->name('dashboard.laporan.download.csv');
+Route::get('/dashboard/laporan/download/pdf', [DashboardLaporanController::class, 'downloadPdf'])
+    ->name('dashboard.laporan.download.pdf');
 
 require __DIR__.'/auth.php';
